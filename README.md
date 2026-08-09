@@ -1,50 +1,80 @@
-# Welcome to your Expo app 👋
+# DevKev — Portafolio Personal (Proyecto 1)
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Portafolio personal desarrollado con **React Native** y **Expo Router**, para la clase de Programación para Dispositivos Móviles. Muestra información personal, proyectos realizados y datos de contacto, navegando entre pantallas mediante un Bottom Tab Navigator, un Stack Navigator y un Drawer Navigator.
 
-## Get started
+## Tecnologías utilizadas
 
-1. Install dependencies
+- [Expo](https://docs.expo.dev/versions/v54.0.0/) `~54.0.35` (con [Expo Router](https://docs.expo.dev/router/introduction/) `~6.0.24` para el enrutamiento basado en archivos)
+- [React Native](https://reactnative.dev/) `0.81.5` / [React](https://react.dev/) `19.1.0`
+- [React Navigation](https://reactnavigation.org/) — `@react-navigation/bottom-tabs`, `@react-navigation/drawer`, `@react-navigation/native`
+- [expo-linear-gradient](https://docs.expo.dev/versions/v54.0.0/sdk/linear-gradient/) — degradados de las tarjetas
+- [expo-image](https://docs.expo.dev/versions/v54.0.0/sdk/image/) — foto de perfil
+- [lucide-react-native](https://lucide.dev/) — set de íconos usado en toda la app
+- TypeScript
+
+## Estructura de navegación
+
+La app usa **file-based routing** de Expo Router dentro de `app/`:
+
+```
+app/
+├── _layout.tsx                    Stack raíz (sin header)
+└── (tabs)/                        Bottom Tab Navigator
+    ├── _layout.tsx                 Configuración de las 3 pestañas + tab activo con degradado
+    ├── index.tsx                   Pantalla "Home" (perfil)
+    ├── contact.tsx                 Pantalla "Contact"
+    └── projects/                   Stack Navigator (proyectos)
+        ├── _layout.tsx              Stack sin header
+        ├── index.tsx                 Lista de proyectos (FlatList)
+        └── [id]/                     Ruta dinámica por proyecto
+            ├── _layout.tsx            Drawer Navigator + datos compartidos (PROJECTS)
+            └── index.tsx              Detalle del proyecto
+```
+
+- **Bottom Tab Navigator** (`app/(tabs)/_layout.tsx`): 3 pestañas — Home, Projects, Contact — con íconos de lucide (`User`, `Folder`, `Send`). La pestaña activa se muestra dentro de un círculo con degradado azul, más grande que la barra, sobresaliendo de esta.
+- **Stack Navigator** (`app/(tabs)/projects/_layout.tsx`): permite pasar de la lista de proyectos al detalle de un proyecto específico (`/projects/[id]`).
+- **Drawer Navigator** (`app/(tabs)/projects/[id]/_layout.tsx`): dentro del detalle de un proyecto, un menú de hamburguesa permite saltar a "Projects" (la lista) o a cualquier otro proyecto sin salir de la vista de detalle.
+
+## Pantallas
+
+### Home (`app/(tabs)/index.tsx`)
+Foto de perfil (`assets/images/profile.png`), nombre, rol y estadísticas (Skills / Years old / Projects), sección **About me**, sección **Skills** (grid de tecnologías) y sección **Grades** (estudios realizados).
+
+### Projects (`app/(tabs)/projects/index.tsx`)
+Lista desplazable (`FlatList`) de los proyectos, cada uno como tarjeta con degradado mostrando título y herramientas usadas. Al tocar una tarjeta navega al detalle del proyecto.
+
+### Project detail (`app/(tabs)/projects/[id]/index.tsx`)
+Título y descripción del proyecto, cuadros con las herramientas utilizadas (**Tools**) y un enlace al sitio publicado (**Link**). Incluye el botón de hamburguesa que abre el Drawer.
+
+Los datos de los proyectos (título, descripción, herramientas, link) están centralizados en `app/(tabs)/projects/[id]/_layout.tsx`, y tanto la lista como el detalle los importan desde ahí para mantenerse sincronizados.
+
+### Contact (`app/(tabs)/contact.tsx`)
+Correo, teléfono, dirección, GitHub y LinkedIn, cada uno con su ícono. Correo, teléfono, GitHub y LinkedIn son tocables y abren la app correspondiente (`mailto:`, `tel:`, navegador) mediante la API `Linking` de React Native.
+
+## Cómo correr el proyecto
+
+1. Instalar dependencias
 
    ```bash
    npm install
    ```
 
-2. Start the app
+2. Iniciar el servidor de desarrollo
 
    ```bash
    npx expo start
    ```
 
-In the output, you'll find options to open the app in a
+3. En la terminal, elegir cómo abrir la app:
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+   - Presionar `a` — [emulador de Android](https://docs.expo.dev/workflow/android-studio-emulator/) (requiere Android Studio)
+   - Presionar `w` — versión web en el navegador (`npx expo start --web`)
+   - Escanear el código QR con [Expo Go](https://expo.dev/go) desde un dispositivo físico
+   - iOS Simulator solo está disponible en macOS
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## Recursos
 
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+- [Documentación de Expo SDK 54](https://docs.expo.dev/versions/v54.0.0/)
+- [Documentación de Expo Router](https://docs.expo.dev/router/introduction/)
+- [Documentación de React Navigation](https://reactnavigation.org/docs/getting-started)
+- [Íconos de Lucide](https://lucide.dev/)
