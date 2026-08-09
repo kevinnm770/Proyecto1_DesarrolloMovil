@@ -1,12 +1,18 @@
-import { ScrollView, Text, View } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
 import { User, Wrench } from "lucide-react-native";
+import { ScrollView, Text, View } from "react-native";
 
 export default function Home() {
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
       <Text style={styles.header}>DevKev</Text>
 
-      <View style={styles.card}>
+      <LinearGradient
+        colors={["#0A0925", "#25228B"]}
+          start={{ x: 0.67, y: 0.97 }}
+          end={{ x: 0.33, y: 0.03 }}
+        style={styles.card}
+      >
         <View style={styles.avatar} />
 
         <Text style={styles.name}>Kevin Naranjo Mendoza</Text>
@@ -26,7 +32,7 @@ export default function Home() {
             <Text style={styles.statLabel}>Projects</Text>
           </View>
         </View>
-      </View>
+      </LinearGradient>
 
       <View style={styles.sectionTitleRow}>
         <View style={styles.sectionIcon}>
@@ -47,8 +53,18 @@ export default function Home() {
         <Text style={styles.sectionTitle}>Skills</Text>
       </View>
       <View style={styles.skillsRow}>
-        <View style={styles.skillBox} />
-        <View style={styles.skillBox} />
+        <LinearGradient
+          colors={["#0A0925", "#25228B"]}
+          start={{ x: 0.67, y: 0.97 }}
+          end={{ x: 0.33, y: 0.03 }}
+          style={styles.skillBox}
+        />
+        <LinearGradient
+          colors={["#0A0925", "#25228B"]}
+          start={{ x: 0.67, y: 0.97 }}
+          end={{ x: 0.33, y: 0.03 }}
+          style={styles.skillBox}
+        />
       </View>
     </ScrollView>
   );
@@ -71,7 +87,6 @@ const styles = {
     marginBottom: 16,
   },
   card: {
-    backgroundColor: "#312e81",
     borderRadius: 20,
     padding: 24,
     alignItems: "center" as const,
@@ -138,12 +153,12 @@ const styles = {
   },
   skillsRow: {
     flexDirection: "row" as const,
+    justifyContent: "center" as const,
   },
   skillBox: {
     width: 90,
     height: 70,
     borderRadius: 14,
-    backgroundColor: "#312e81",
-    marginRight: 14,
+    marginHorizontal: 7,
   },
 };
