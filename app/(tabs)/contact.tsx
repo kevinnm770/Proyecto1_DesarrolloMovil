@@ -1,10 +1,25 @@
-import { Contact as ContactIcon, Mail, Phone, Send } from "lucide-react-native";
-import { Text, TouchableOpacity, View } from "react-native";
+import { Briefcase, Code, Mail, MapPinned, Phone, Send } from "lucide-react-native";
+import { Linking, Text, TouchableOpacity, View } from "react-native";
 
 const CONTACT_INFO = [
   { id: "email", icon: Mail, value: "kevinnm770@gmail.com"},
   { id: "phone", icon: Phone, value: "8548-8532"},
-  { id: "address", icon: ContactIcon, value: "La Lima, Cartago, Costa Rica" },
+  { id: "address", icon: MapPinned, value: "La Lima, Cartago, Costa Rica" },
+  {
+    id: "github",
+    icon: Code,
+    value: "github.com/kevinnm770",
+    onPress: () => Linking.openURL("https://github.com/kevinnm770"),
+  },
+  {
+    id: "linkedin",
+    icon: Briefcase,
+    value: "linkedin.com/in/kevin-naranjo-mendoza",
+    onPress: () =>
+      Linking.openURL(
+        "https://www.linkedin.com/in/kevin-naranjo-mendoza-a0a70b312?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3Bud4fENkkQBacafr78lV3Uw%3D%3D"
+      ),
+  },
 ];
 
 export default function Contact() {
@@ -25,6 +40,7 @@ export default function Contact() {
           <TouchableOpacity
             key={item.id}
             style={styles.row}
+            onPress={item.onPress}
           >
             <Icon size={18} color="#312e81" />
             <Text style={styles.rowText}>{item.value}</Text>
@@ -46,6 +62,7 @@ const styles = {
     fontWeight: "700" as const,
     fontStyle: "italic" as const,
     color: "#1e1b4b",
+    marginTop: 20,
     marginBottom: 16,
   },
   sectionTitleRow: {

@@ -2,8 +2,8 @@ import { DrawerNavigationProp } from "@react-navigation/drawer";
 import { ParamListBase, useNavigation } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
 import { useLocalSearchParams } from "expo-router";
-import { FileText, Menu, Wrench } from "lucide-react-native";
-import { ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { FileText, Link as LinkIcon, Menu, Wrench } from "lucide-react-native";
+import { Linking, ScrollView, Text, TouchableOpacity, View } from "react-native";
 
 import { PROJECTS } from "./_layout";
 
@@ -43,9 +43,25 @@ export default function ProjectDetail() {
             start={{ x: 0.67, y: 0.97 }}
             end={{ x: 0.33, y: 0.03 }}
             style={styles.toolBox}
-          />
+          >
+            <Text style={styles.toolText}>{tool}</Text>
+          </LinearGradient>
         ))}
       </View>
+
+      <View style={[styles.sectionTitleRow, { marginTop: 20 }]}>
+        <View style={styles.sectionIcon}>
+          <LinkIcon size={18} color="#4338ca" />
+        </View>
+        <Text style={styles.sectionTitle}>Link</Text>
+      </View>
+      <TouchableOpacity
+        style={styles.linkRow}
+        onPress={() => Linking.openURL(project.link)}
+      >
+        <LinkIcon size={16} color="#312e81" />
+        <Text style={styles.linkText}>{project.link.replace(/^https?:\/\//, "")}</Text>
+      </TouchableOpacity>
     </ScrollView>
   );
 }
@@ -62,6 +78,7 @@ const styles = {
   headerRow: {
     flexDirection: "row" as const,
     alignItems: "center" as const,
+    marginTop: 20,
     marginBottom: 16,
   },
   header: {
@@ -98,11 +115,36 @@ const styles = {
   },
   toolsRow: {
     flexDirection: "row" as const,
+    flexWrap: "wrap" as const,
+    justifyContent: "center" as const,
+    gap: 14,
   },
   toolBox: {
     width: 90,
     height: 70,
     borderRadius: 14,
-    marginRight: 14,
+    justifyContent: "center" as const,
+    alignItems: "center" as const,
+    paddingHorizontal: 6,
+  },
+  toolText: {
+    color: "#ffffff",
+    fontSize: 12,
+    fontWeight: "600" as const,
+    textAlign: "center" as const,
+  },
+  linkRow: {
+    flexDirection: "row" as const,
+    alignItems: "center" as const,
+    borderWidth: 1.5,
+    borderColor: "#312e81",
+    borderRadius: 28,
+    paddingVertical: 14,
+    paddingHorizontal: 18,
+  },
+  linkText: {
+    color: "#1e1b4b",
+    fontSize: 14,
+    marginLeft: 12,
   },
 };

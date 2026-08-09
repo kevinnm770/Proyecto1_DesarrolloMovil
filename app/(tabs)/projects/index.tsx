@@ -3,13 +3,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { router } from "expo-router";
 import { Folder } from "lucide-react-native";
 
-const PROJECTS = [
-  { id: "1", title: "Project #1", tools: ["Tool 1", "Tool 2", "Tool 3"] },
-  { id: "2", title: "Project #2", tools: ["Tool 1", "Tool 2", "Tool 3"] },
-  { id: "3", title: "Project #3", tools: ["Tool 1", "Tool 2", "Tool 3"] },
-  { id: "4", title: "Project #4", tools: ["Tool 1", "Tool 2", "Tool 3"] },
-  { id: "5", title: "Project #5", tools: ["Tool 1", "Tool 2", "Tool 3"] },
-];
+import { PROJECTS } from "./[id]/_layout";
 
 export default function Projects() {
   return (
@@ -65,6 +59,7 @@ const styles = {
     fontWeight: "700" as const,
     fontStyle: "italic" as const,
     color: "#1e1b4b",
+    marginTop: 20,
     marginBottom: 16,
   },
   sectionTitleRow: {
@@ -102,10 +97,12 @@ const styles = {
   },
   toolsRow: {
     flexDirection: "row" as const,
+    flexWrap: "wrap" as const,
   },
   toolText: {
     color: "#c7c7e0",
     fontSize: 12,
     marginRight: 16,
+    marginBottom: 6,
   },
 };

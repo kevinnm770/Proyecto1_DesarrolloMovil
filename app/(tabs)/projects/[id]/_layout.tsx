@@ -1,44 +1,40 @@
 import { DrawerContentComponentProps, DrawerContentScrollView } from "@react-navigation/drawer";
-import { Drawer } from "expo-router/drawer";
 import { useLocalSearchParams, useRouter } from "expo-router";
+import { Drawer } from "expo-router/drawer";
 import { Folder } from "lucide-react-native";
 import { Text, TouchableOpacity, View } from "react-native";
 
 export const PROJECTS = [
   {
     id: "1",
-    title: "Project #1",
+    title: "Tutorias Arithmos",
     description:
-      "Este primer proyecto programado se centra en la aplicación práctica de los principios de diseño de interfaces de usuario (UI) y experiencia de usuario (UX).",
-    tools: ["Tool 1", "Tool 2", "Tool 3"],
+      "Web platform for managing and booking math tutoring sessions.",
+    tools: ["Laravel", "MySQL", "Bootstrap", "JavaScript"],
+    link: "https://tutoriasarithmos.com",
   },
   {
     id: "2",
-    title: "Project #2",
+    title: "Mateskev.com",
     description:
-      "Este primer proyecto programado se centra en la aplicación práctica de los principios de diseño de interfaces de usuario (UI) y experiencia de usuario (UX).",
-    tools: ["Tool 1", "Tool 2", "Tool 3"],
+      "Website with math learning resources and virtual tutoring bookings.",
+    tools: ["HTML", "CSS", "JavaScript", "PHP", "MySQL", "Bootstrap"],
+    link: "https://mateskev.com/",
   },
   {
     id: "3",
-    title: "Project #3",
-    description:
-      "Este primer proyecto programado se centra en la aplicación práctica de los principios de diseño de interfaces de usuario (UI) y experiencia de usuario (UX).",
-    tools: ["Tool 1", "Tool 2", "Tool 3"],
+    title: "Denaranjo.com",
+    description: "Professional web portfolio for a graphic designer.",
+    tools: ["HTML", "CSS", "JavaScript"],
+    link: "https://denaranjo.com/",
   },
   {
     id: "4",
-    title: "Project #4",
+    title: "Sólidos Platónicos",
     description:
-      "Este primer proyecto programado se centra en la aplicación práctica de los principios de diseño de interfaces de usuario (UI) y experiencia de usuario (UX).",
-    tools: ["Tool 1", "Tool 2", "Tool 3"],
-  },
-  {
-    id: "5",
-    title: "Project #5",
-    description:
-      "Este primer proyecto programado se centra en la aplicación práctica de los principios de diseño de interfaces de usuario (UI) y experiencia de usuario (UX).",
-    tools: ["Tool 1", "Tool 2", "Tool 3"],
+      "Website in development about Platonic solids, built as a final degree project in mathematics.",
+    tools: ["HTML", "CSS", "JavaScript", "Bootstrap", "Blender"],
+    link: "https://kevinnm770.github.io/TFG_Platonicos/Inicio.html",
   },
 ];
 
