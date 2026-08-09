@@ -1,98 +1,149 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import { ScrollView, Text, View } from "react-native";
+import { User, Wrench } from "lucide-react-native";
 
-import { HelloWave } from '@/components/hello-wave';
-import ParallaxScrollView from '@/components/parallax-scroll-view';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { Link } from 'expo-router';
-
-export default function HomeScreen() {
+export default function Home() {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <Link href="/modal">
-          <Link.Trigger>
-            <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-          </Link.Trigger>
-          <Link.Preview />
-          <Link.Menu>
-            <Link.MenuAction title="Action" icon="cube" onPress={() => alert('Action pressed')} />
-            <Link.MenuAction
-              title="Share"
-              icon="square.and.arrow.up"
-              onPress={() => alert('Share pressed')}
-            />
-            <Link.Menu title="More" icon="ellipsis">
-              <Link.MenuAction
-                title="Delete"
-                icon="trash"
-                destructive
-                onPress={() => alert('Delete pressed')}
-              />
-            </Link.Menu>
-          </Link.Menu>
-        </Link>
+    <ScrollView style={styles.container} contentContainerStyle={styles.content}>
+      <Text style={styles.header}>DevKev</Text>
 
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+      <View style={styles.card}>
+        <View style={styles.avatar} />
+
+        <Text style={styles.name}>Kevin Naranjo Mendoza</Text>
+        <Text style={styles.role}>Software developer</Text>
+
+        <View style={styles.statsRow}>
+          <View style={styles.statItem}>
+            <Text style={styles.statNumber}>7</Text>
+            <Text style={styles.statLabel}>Skills</Text>
+          </View>
+          <View style={styles.statItem}>
+            <Text style={styles.statNumber}>26</Text>
+            <Text style={styles.statLabel}>Years old</Text>
+          </View>
+          <View style={styles.statItem}>
+            <Text style={styles.statNumber}>2</Text>
+            <Text style={styles.statLabel}>Projects</Text>
+          </View>
+        </View>
+      </View>
+
+      <View style={styles.sectionTitleRow}>
+        <View style={styles.sectionIcon}>
+          <User size={18} color="#4338ca" />
+        </View>
+        <Text style={styles.sectionTitle}>About me</Text>
+      </View>
+      <Text style={styles.aboutText}>
+        Este primer proyecto programado se centra en la aplicación práctica de
+        los principios de diseño de interfaces de usuario (UI) y experiencia
+        de usuario (UX).
+      </Text>
+
+      <View style={styles.sectionTitleRow}>
+        <View style={styles.sectionIcon}>
+          <Wrench size={18} color="#4338ca" />
+        </View>
+        <Text style={styles.sectionTitle}>Skills</Text>
+      </View>
+      <View style={styles.skillsRow}>
+        <View style={styles.skillBox} />
+        <View style={styles.skillBox} />
+      </View>
+    </ScrollView>
   );
 }
 
-const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
+const styles = {
+  container: {
+    flex: 1,
+    backgroundColor: "#ffffff",
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
+  content: {
+    padding: 20,
+    paddingBottom: 40,
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  header: {
+    fontSize: 22,
+    fontWeight: "700" as const,
+    fontStyle: "italic" as const,
+    color: "#1e1b4b",
+    marginBottom: 16,
   },
-});
+  card: {
+    backgroundColor: "#312e81",
+    borderRadius: 20,
+    padding: 24,
+    alignItems: "center" as const,
+    marginBottom: 24,
+  },
+  avatar: {
+    width: 96,
+    height: 96,
+    borderRadius: 48,
+    backgroundColor: "#d9d9e3",
+    marginBottom: 16,
+  },
+  name: {
+    color: "#ffffff",
+    fontSize: 18,
+    fontWeight: "700" as const,
+  },
+  role: {
+    color: "#c7c7e0",
+    fontSize: 13,
+    marginBottom: 20,
+  },
+  statsRow: {
+    flexDirection: "row" as const,
+    alignSelf: "stretch" as const,
+    justifyContent: "space-around" as const,
+  },
+  statItem: {
+    alignItems: "center" as const,
+  },
+  statNumber: {
+    color: "#ffffff",
+    fontSize: 20,
+    fontWeight: "700" as const,
+  },
+  statLabel: {
+    color: "#c7c7e0",
+    fontSize: 12,
+  },
+  sectionTitleRow: {
+    flexDirection: "row" as const,
+    alignItems: "center" as const,
+    marginBottom: 10,
+  },
+  sectionIcon: {
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    backgroundColor: "#e0e0f5",
+    justifyContent: "center" as const,
+    alignItems: "center" as const,
+    marginRight: 10,
+  },
+  sectionTitle: {
+    fontSize: 16,
+    fontWeight: "700" as const,
+    color: "#1e1b4b",
+  },
+  aboutText: {
+    fontSize: 13,
+    color: "#333333",
+    lineHeight: 20,
+    marginBottom: 24,
+  },
+  skillsRow: {
+    flexDirection: "row" as const,
+  },
+  skillBox: {
+    width: 90,
+    height: 70,
+    borderRadius: 14,
+    backgroundColor: "#312e81",
+    marginRight: 14,
+  },
+};
